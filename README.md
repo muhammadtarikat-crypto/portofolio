@@ -163,10 +163,13 @@ Hasil pada database aktif: `"Flutter"`. Untuk melihat status migrasi:
 php artisan migrate:status
 ```
 
-**Screenshot HeidiSQL/phpMyAdmin untuk bukti skema dan hasil query belum
-disertakan.** Ambil screenshot yang memperlihatkan tabel `project_skill`,
-`messages`, serta hasil query di atas, kemudian simpan di `public/images/` dan
-tambahkan gambarnya di bagian ini sebelum pengumpulan jika screenshot diwajibkan.
+Screenshot berikut menunjukkan database, tabel `project_skill`, query, dan
+hasil relasi. Bukti ini belum menampilkan seluruh kolom tabel `messages`.
+
+![Bukti HeidiSQL relasi project dan skills](./public/images/lat-4b-database-relations.png)
+
+Untuk melengkapi bukti struktur, buka tabel `messages` di HeidiSQL dan ambil
+screenshot yang memperlihatkan seluruh kolomnya.
 
 ### Latihan 5a — REST API GET
 
