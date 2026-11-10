@@ -29,6 +29,36 @@ php artisan serve
 
 ![Tampilan portofolio mobile](./public/images/lat-3-mobile.jpg)
 
+## Latihan 4a — Setup Laravel
+
+Halaman bukti setup tersedia di `/welcome`; beranda portofolio tetap berada di `/`.
+Halaman menampilkan identitas mahasiswa, versi Laravel, nama database yang
+dikonfigurasi, dan status koneksinya. Lingkungan proyek saat ini memakai PHP
+8.3.33, Laravel 13.37.0, MySQL, dan database `portofolio` (dipertahankan dari
+konfigurasi yang sudah ada).
+
+### Struktur Folder Utama
+
+- `app/` — model dan logika aplikasi.
+- `routes/` — definisi route web dan API.
+- `resources/views/` — tampilan Blade.
+- `resources/css/` dan `resources/js/` — aset frontend.
+- `database/migrations/` dan `database/seeders/` — skema dan data awal.
+- `public/` — aset yang dapat diakses browser.
+
+### Perintah Artisan
+
+```sh
+php artisan --version
+php artisan route:list
+php artisan migrate:status
+php artisan make:model NamaModel -m
+```
+
+### Bukti Tampilan
+
+![Halaman setup Laravel](./public/images/lat-4a-setup.jpg)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
