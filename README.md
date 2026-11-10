@@ -103,6 +103,10 @@ php artisan make:model NamaModel -m
 
 ### Latihan 4b — Database dan Model
 
+Latihan ini berfokus pada database dan model. Bukti screenshot website desktop
+tidak diperlukan untuk bagian 4b; screenshot tampilan website ada pada bagian
+Latihan 3.
+
 Migrasi menambahkan tabel pivot `project_skill` serta tabel `messages`.
 `Project::skills()` dan `Skill::projects()` menyediakan relasi many-to-many
 dua arah. Endpoint `POST /api/contacts` tetap kompatibel, tetapi pesan baru
@@ -164,12 +168,18 @@ php artisan migrate:status
 ```
 
 Screenshot berikut menunjukkan database, tabel `project_skill`, query, dan
-hasil relasi. Bukti ini belum menampilkan seluruh kolom tabel `messages`.
+hasil relasi.
 
 ![Bukti HeidiSQL relasi project dan skills](./public/images/lat-4b-database-relations.png)
 
-Untuk melengkapi bukti struktur, buka tabel `messages` di HeidiSQL dan ambil
-screenshot yang memperlihatkan seluruh kolomnya.
+Screenshot struktur tabel `messages` dari HeidiSQL:
+
+![Struktur tabel messages di HeidiSQL](./public/images/lat-4b-messages-table.png)
+
+**Catatan bukti:** screenshot `messages` yang tersedia hanya menampilkan bagian
+atas daftar kolom. Jika dosen meminta semua kolom terlihat, ambil screenshot
+tambahan setelah menggulir daftar kolom ke bawah. Hasil verifikasi Tinker
+`"Flutter"` tercatat di atas, tetapi screenshot terminal Tinker belum tersedia.
 
 ### Latihan 5a — REST API GET
 
