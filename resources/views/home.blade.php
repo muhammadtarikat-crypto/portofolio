@@ -49,7 +49,7 @@
 
   <!-- Pesan jika API gagal dimuat -->
   <div id="apiError" class="hidden bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200 text-center text-sm px-5 py-3">
-    Data gagal dimuat dari API. Pastikan MySQL menyala, sudah menjalankan <code>php artisan migrate:fresh --seed</code>, dan server <code>php artisan serve</code> aktif.
+    Data gagal dimuat dari API. Pastikan MySQL menyala, migrasi sudah dijalankan dengan <code>php artisan migrate</code>, dan server <code>php artisan serve</code> aktif.
   </div>
 
   <!-- ============ HERO (data dari /api/profile) ============ -->

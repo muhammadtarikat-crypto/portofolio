@@ -9,6 +9,8 @@
 
 ## Latihan 3 — Landing Page Portofolio
 
+Branch pengumpulan: `Lat-3_LandingPage`.
+
 Portofolio ini memakai Tailwind CSS 4 melalui Vite. Halaman memuat navigasi
 responsif dengan menu hamburger, hero, skills, proyek, timeline pengalaman,
 sertifikat, formulir kontak, dan footer. Untuk menjalankan secara lokal:
@@ -30,6 +32,8 @@ php artisan serve
 ![Tampilan portofolio mobile](./public/images/lat-3-mobile.jpg)
 
 ## Latihan 4a — Setup Laravel
+
+Branch pengumpulan: `Lat-4a_SetupLaravel`.
 
 Halaman bukti setup tersedia di `/welcome`; beranda portofolio tetap berada di `/`.
 Halaman menampilkan identitas mahasiswa, versi Laravel, nama database yang
@@ -58,6 +62,73 @@ php artisan make:model NamaModel -m
 ### Bukti Tampilan
 
 ![Halaman setup Laravel](./public/images/lat-4a-setup.jpg)
+
+## Latihan 4b — Database dan Model
+
+Branch pengumpulan: `Lat-4b_DatabaseModel`.
+
+Migrasi tambahan membuat pivot `project_skill` dengan foreign key ke `projects`
+dan `skills`, serta tabel `messages` untuk formulir kontak. Model `Project` dan
+`Skill` memiliki relasi many-to-many dua arah. Endpoint lama `/api/contacts`
+dipertahankan, tetapi pesan baru disimpan ke `messages`. Tabel `contacts` tetap
+ada sebagai tabel lama agar perubahan ini tidak menghapus data atau merusak
+integrasi yang sudah ada.
+
+### Tujuh Tabel Inti
+
+| Tabel | Kolom utama / relasi |
+|---|---|
+| `profiles` | Biodata utama dan tautan portofolio |
+| `skills` | Nama, kategori, ikon, dan urutan skill |
+| `projects` | Informasi proyek dan tag JSON yang sudah digunakan API |
+| `project_skill` | `project_id` → `projects.id`, `skill_id` → `skills.id` |
+| `experiences` | Pendidikan/pengalaman dan detail JSON |
+| `certificates` | Nama sertifikat, penerbit, tahun, dan urutan |
+| `messages` | Nama, email, subjek, isi pesan, dan timestamps |
+
+Seeder menghubungkan proyek dengan skill terkait dan membuat satu pesan demo
+di domain contoh `.test`. Tes berjalan pada SQLite terisolasi; seeder tidak
+dijalankan terhadap database aktif yang sudah berisi data.
+
+```sh
+php artisan migrate
+php artisan migrate:status
+php artisan test --compact
+```
+
+Untuk menambahkan relasi project-skill ke data yang sudah ada tanpa
+menduplikasikan profil/proyek, jalankan seeder khusus yang aman diulang:
+
+```sh
+php artisan db:seed --class=ProjectSkillSeeder
+```
+
+`php artisan migrate:fresh --seed` menghapus semua tabel terlebih dahulu;
+jalankan hanya pada database latihan kosong, bukan database `portofolio` yang
+sudah berisi data.
+
+### Verifikasi Database Aktif
+
+Migrasi baru sudah berjalan pada MySQL `portofolio`. Relasi yang ditambahkan ke
+data proyek yang sudah ada:
+
+| Proyek | Skill terkait |
+|---|---|
+| Nusantara Journey | Flutter, Figma |
+| EcoHero | Figma |
+| CleanCity | Figma |
+| Website Portofolio | Laravel, MySQL, Tailwind CSS |
+
+Tabel `messages` sudah tersedia dan belum diisi pesan contoh pada database
+aktif. Pesan demo hanya dibuat oleh `DatabaseSeeder` pada database latihan
+kosong. Untuk mengecek relasi dengan Tinker:
+
+```sh
+php artisan tinker --execute 'dump(App\Models\Project::find(1)->skills->first()->name);'
+```
+
+Output pada database aktif: `"Flutter"`. Bukti skema dan isi relasi di atas
+diambil dari database MySQL yang terhubung, tanpa menjalankan reset tabel.
 
 ## About Laravel
 
