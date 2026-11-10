@@ -1,56 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Portofolio Muhammad Tarikat
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Portofolio pribadi berbasis Laravel yang menampilkan profil, keahlian, proyek,
+pengalaman, sertifikat, dan formulir kontak.
 
-## Latihan 3 — Landing Page Portofolio
+## Identitas Mahasiswa
 
-Branch pengumpulan: `Lat-3_LandingPage`.
+| Keterangan | Data |
+|---|---|
+| Nama | Muhammad Tarikat |
+| NPM | 24312205 |
+| Kelas | IF 24 Cx |
+| Framework | Laravel 13.37.0 |
+| Database aktif | MySQL — `portofolio` |
 
-Portofolio ini memakai Tailwind CSS 4 melalui Vite. Halaman memuat navigasi
-responsif dengan menu hamburger, hero, skills, proyek, timeline pengalaman,
-sertifikat, formulir kontak, dan footer. Untuk menjalankan secara lokal:
+## Menjalankan Proyek
+
+Kebutuhan: PHP 8.3+, Composer, Node.js/npm, dan MySQL.
 
 ```sh
+composer install
 npm install
+```
+
+Salin `.env.example` menjadi `.env`, sesuaikan koneksi database lokal, lalu
+jalankan:
+
+```sh
+php artisan key:generate
+php artisan migrate
 npm run build
 php artisan serve
 ```
 
-### Bukti Tampilan
+Buka `http://127.0.0.1:8000`. Untuk menjalankan frontend selama pengembangan,
+gunakan `npm run dev` di terminal terpisah.
 
-**Desktop (1280px)**
+> **Penting:** `php artisan migrate:fresh --seed` menghapus semua tabel sebelum
+> membuatnya kembali. Jangan jalankan pada database yang berisi data penting.
+> Untuk database proyek yang sudah ada, gunakan `php artisan migrate`.
 
-![Tampilan portofolio desktop](./public/images/lat-3-desktop.jpg)
+## Latihan dan Branch Pengumpulan
 
-**Mobile (375px)**
+Pekerjaan setiap latihan tersedia pada branch GitHub berikut:
 
-![Tampilan portofolio mobile](./public/images/lat-3-mobile.jpg)
+| Latihan | Branch |
+|---|---|
+| 3 — Landing Page | [Lat-3_LandingPage](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-3_LandingPage) |
+| 4a — Setup Laravel | [Lat-4a_SetupLaravel](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4a_SetupLaravel) |
+| 4b — Database dan Model | [Lat-4b_DatabaseModel](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4b_DatabaseModel) |
+| 5a — REST API GET | [Lat-5a_RestAPI_GET](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-5a_RestAPI_GET) |
 
-## Latihan 4a — Setup Laravel
+### Latihan 3 — Landing Page
 
-Branch pengumpulan: `Lat-4a_SetupLaravel`.
+Landing page portofolio responsif menggunakan Tailwind CSS 4 dan Vite. Halaman
+memuat navigasi desktop/mobile, hero, skills, proyek, pengalaman, sertifikat,
+formulir kontak, dan footer.
 
-Halaman bukti setup tersedia di `/welcome`; beranda portofolio tetap berada di `/`.
-Halaman menampilkan identitas mahasiswa, versi Laravel, nama database yang
-dikonfigurasi, dan status koneksinya. Lingkungan proyek saat ini memakai PHP
-8.3.33, Laravel 13.37.0, MySQL, dan database `portofolio` (dipertahankan dari
-konfigurasi yang sudah ada).
+**Bukti tampilan desktop (1280px):**
 
-### Struktur Folder Utama
+![Landing page portofolio pada desktop](./public/images/lat-3-desktop.jpg)
 
-- `app/` — model dan logika aplikasi.
-- `routes/` — definisi route web dan API.
-- `resources/views/` — tampilan Blade.
-- `resources/css/` dan `resources/js/` — aset frontend.
-- `database/migrations/` dan `database/seeders/` — skema dan data awal.
-- `public/` — aset yang dapat diakses browser.
+**Bukti tampilan mobile (375px):**
 
-### Perintah Artisan
+![Landing page portofolio pada mobile](./public/images/lat-3-mobile.jpg)
+
+### Latihan 4a — Setup Laravel
+
+Halaman bukti identitas dan konfigurasi tersedia di `/welcome`; halaman utama
+portofolio tetap berada di `/`. Halaman menampilkan nama, NPM, kelas, versi
+Laravel, database yang dikonfigurasi, dan status koneksi aktual.
+
+Versi yang terpasang di lingkungan proyek: PHP 8.3.33, Laravel 13.37.0, MySQL,
+dan database `portofolio`. Versi/nama database ini mencerminkan konfigurasi
+proyek yang ada; aplikasi tidak diturunkan versinya dan database tidak diganti
+ke `portofolio_web`.
+
+**Bukti halaman setup:**
+
+![Halaman setup Laravel](./public/images/lat-4a-setup.jpg)
+
+**Struktur folder utama:**
+
+| Folder | Isi |
+|---|---|
+| `app/Models` | Model Eloquent |
+| `app/Http/Controllers` | Controller aplikasi dan API |
+| `routes` | Route web dan API |
+| `resources/views` | Tampilan Blade |
+| `resources/css`, `resources/js` | Aset frontend |
+| `database/migrations` | Definisi skema database |
+| `database/seeders` | Data awal dan relasi demo |
+| `public` | Aset publik dan bukti screenshot |
+
+**Perintah Artisan yang digunakan:**
 
 ```sh
 php artisan --version
@@ -59,123 +101,100 @@ php artisan migrate:status
 php artisan make:model NamaModel -m
 ```
 
-### Bukti Tampilan
+### Latihan 4b — Database dan Model
 
-![Halaman setup Laravel](./public/images/lat-4a-setup.jpg)
+Migrasi menambahkan tabel pivot `project_skill` serta tabel `messages`.
+`Project::skills()` dan `Skill::projects()` menyediakan relasi many-to-many
+dua arah. Endpoint `POST /api/contacts` tetap kompatibel, tetapi pesan baru
+disimpan ke `messages`. Tabel lama `contacts` dipertahankan agar data dan
+integrasi yang sudah ada tidak dihapus.
 
-## Latihan 4b — Database dan Model
+**Tujuh tabel inti:**
 
-Branch pengumpulan: `Lat-4b_DatabaseModel`.
-
-Migrasi tambahan membuat pivot `project_skill` dengan foreign key ke `projects`
-dan `skills`, serta tabel `messages` untuk formulir kontak. Model `Project` dan
-`Skill` memiliki relasi many-to-many dua arah. Endpoint lama `/api/contacts`
-dipertahankan, tetapi pesan baru disimpan ke `messages`. Tabel `contacts` tetap
-ada sebagai tabel lama agar perubahan ini tidak menghapus data atau merusak
-integrasi yang sudah ada.
-
-### Tujuh Tabel Inti
-
-| Tabel | Kolom utama / relasi |
+| Tabel | Kegunaan |
 |---|---|
-| `profiles` | Biodata utama dan tautan portofolio |
-| `skills` | Nama, kategori, ikon, dan urutan skill |
-| `projects` | Informasi proyek dan tag JSON yang sudah digunakan API |
-| `project_skill` | `project_id` → `projects.id`, `skill_id` → `skills.id` |
-| `experiences` | Pendidikan/pengalaman dan detail JSON |
-| `certificates` | Nama sertifikat, penerbit, tahun, dan urutan |
-| `messages` | Nama, email, subjek, isi pesan, dan timestamps |
+| `profiles` | Biodata dan tautan portofolio |
+| `skills` | Keahlian, kategori, ikon, dan urutan |
+| `projects` | Data proyek dan tag |
+| `project_skill` | Relasi project-skill dengan foreign key |
+| `experiences` | Pendidikan/pengalaman dan detail |
+| `certificates` | Sertifikat, penerbit, dan tahun |
+| `messages` | Pesan formulir kontak |
 
-Seeder menghubungkan proyek dengan skill terkait dan membuat satu pesan demo
-di domain contoh `.test`. Tes berjalan pada SQLite terisolasi; seeder tidak
-dijalankan terhadap database aktif yang sudah berisi data.
-
-```sh
-php artisan migrate
-php artisan migrate:status
-php artisan test --compact
-```
-
-Untuk menambahkan relasi project-skill ke data yang sudah ada tanpa
-menduplikasikan profil/proyek, jalankan seeder khusus yang aman diulang:
+Seeder `ProjectSkillSeeder` menghubungkan proyek dengan keahlian yang sesuai.
+Seeder ini bisa dijalankan pada data yang sudah ada tanpa membuat ulang profil
+atau proyek:
 
 ```sh
 php artisan db:seed --class=ProjectSkillSeeder
 ```
 
-`php artisan migrate:fresh --seed` menghapus semua tabel terlebih dahulu;
-jalankan hanya pada database latihan kosong, bukan database `portofolio` yang
-sudah berisi data.
+Pada database aktif `portofolio`, migrasi sudah diterapkan dan relasi berikut
+telah diverifikasi:
 
-### Verifikasi Database Aktif
-
-Migrasi baru sudah berjalan pada MySQL `portofolio`. Relasi yang ditambahkan ke
-data proyek yang sudah ada:
-
-| Proyek | Skill terkait |
+| Proyek | Skills |
 |---|---|
 | Nusantara Journey | Flutter, Figma |
 | EcoHero | Figma |
 | CleanCity | Figma |
 | Website Portofolio | Laravel, MySQL, Tailwind CSS |
 
-Tabel `messages` sudah tersedia dan belum diisi pesan contoh pada database
-aktif. Pesan demo hanya dibuat oleh `DatabaseSeeder` pada database latihan
-kosong. Untuk mengecek relasi dengan Tinker:
+Query baca-saja untuk menampilkan relasi:
+
+```sql
+SELECT p.title,
+       GROUP_CONCAT(s.name ORDER BY s.name SEPARATOR ', ') AS skills
+FROM projects p
+JOIN project_skill ps ON ps.project_id = p.id
+JOIN skills s ON s.id = ps.skill_id
+GROUP BY p.id, p.title
+ORDER BY p.sort, p.id;
+```
+
+Contoh pemeriksaan relasi dengan Tinker:
 
 ```sh
 php artisan tinker --execute 'dump(App\Models\Project::find(1)->skills->first()->name);'
 ```
 
-Output pada database aktif: `"Flutter"`. Bukti skema dan isi relasi di atas
-diambil dari database MySQL yang terhubung, tanpa menjalankan reset tabel.
+Hasil pada database aktif: `"Flutter"`. Untuk melihat status migrasi:
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```sh
+php artisan migrate:status
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+**Screenshot HeidiSQL/phpMyAdmin untuk bukti skema dan hasil query belum
+disertakan.** Ambil screenshot yang memperlihatkan tabel `project_skill`,
+`messages`, serta hasil query di atas, kemudian simpan di `public/images/` dan
+tambahkan gambarnya di bagian ini sebelum pengumpulan jika screenshot diwajibkan.
 
-## Contributing
+### Latihan 5a — REST API GET
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Latihan 5a dikerjakan pada branch tersendiri, yaitu
+[Lat-5a_RestAPI_GET](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-5a_RestAPI_GET).
+Branch tersebut menyediakan endpoint berikut:
 
-## Code of Conduct
+| Method | Endpoint | Kegunaan |
+|---|---|---|
+| GET | `/api/portfolio/profile` | Data profil |
+| GET | `/api/portfolio/skills` | Daftar keahlian |
+| GET | `/api/portfolio/projects` | Daftar proyek |
+| GET | `/api/portfolio/projects/{slug}` | Detail proyek |
+| GET | `/api/portfolio/experiences` | Pendidikan dan pengalaman |
+| GET | `/api/portfolio/certificates` | Sertifikat |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Respons API memakai envelope JSON dengan `status`, `message`, dan `data`.
+Dokumentasi lengkap, tes endpoint, serta koleksi Postman tersedia pada branch
+tersebut: [README Latihan 5a](https://github.com/muhammadtarikat-crypto/portofolio/blob/Lat-5a_RestAPI_GET/README.md) dan
+[koleksi Postman](https://github.com/muhammadtarikat-crypto/portofolio/blob/Lat-5a_RestAPI_GET/Lat-5a_Portfolio_API.postman_collection.json).
 
-## Security Vulnerabilities
+## Pengujian
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Jalankan seluruh tes:
 
-## License
+```sh
+php artisan test --compact
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Tes mencakup halaman setup, relasi project-skill, serta penyimpanan dan validasi
+pesan kontak. Database tes memakai SQLite terisolasi.
