@@ -7,6 +7,28 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Latihan 3 — Landing Page Portofolio
+
+Portofolio ini memakai Tailwind CSS 4 melalui Vite. Halaman memuat navigasi
+responsif dengan menu hamburger, hero, skills, proyek, timeline pengalaman,
+sertifikat, formulir kontak, dan footer. Untuk menjalankan secara lokal:
+
+```sh
+npm install
+npm run build
+php artisan serve
+```
+
+### Bukti Tampilan
+
+**Desktop (1280px)**
+
+![Tampilan portofolio desktop](./public/images/lat-3-desktop.jpg)
+
+**Mobile (375px)**
+
+![Tampilan portofolio mobile](./public/images/lat-3-mobile.jpg)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

@@ -17,7 +17,7 @@
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased transition-colors">
 
 @php
-  $navs = ['Home' => '#home', 'About' => '#about', 'Projects' => '#projects', 'Experience' => '#experience', 'Certificates' => '#certificates', 'Contact' => '#contact'];
+  $navs = ['Home' => '#home', 'About' => '#about', 'Skills' => '#skills', 'Projects' => '#projects', 'Experience' => '#experience', 'Certificates' => '#certificates', 'Contact' => '#contact'];
   $input = 'w-full rounded-lg border border-slate-300 dark:border-white/20 bg-slate-50 dark:bg-slate-900 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-cyan-400';
   $link = 'hover:text-blue-600 dark:hover:text-cyan-400';
 @endphp
@@ -65,7 +65,7 @@
         <p id="pBio" class="text-slate-600 dark:text-slate-400 max-w-xl mt-4 mx-auto md:mx-0 leading-7"></p>
         <div class="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
           <a id="pCv" href="#" download class="button-primary px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 active:scale-95 transition"><i class="fa-solid fa-download mr-2"></i>Download CV</a>
-          <a href="#contact" class="button-secondary px-6 py-3 rounded-xl border border-slate-300 dark:border-white/20 text-slate-700 dark:text-slate-100 font-semibold hover:border-blue-500 dark:hover:border-cyan-400 active:scale-95 transition">Mari Terhubung <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
+          <a href="#projects" class="button-secondary px-6 py-3 rounded-xl border border-slate-300 dark:border-white/20 text-slate-700 dark:text-slate-100 font-semibold hover:border-blue-500 dark:hover:border-cyan-400 active:scale-95 transition">Lihat Proyek <i class="fa-solid fa-arrow-down ml-2 text-xs"></i></a>
         </div>
         <div class="mt-8 flex gap-3 justify-center md:justify-start">
           <a data-social="github" href="#" aria-label="GitHub" class="social-link {{ $link }}"><i class="fa-brands fa-github"></i></a>
@@ -141,13 +141,13 @@
         <a data-social="email" href="#" class="contact-email inline-flex items-center gap-3 mt-7 font-semibold text-blue-700 dark:text-cyan-300"><i class="fa-regular fa-envelope"></i><span>Kirim email kepada saya</span><i class="fa-solid fa-arrow-right text-xs"></i></a>
       </div>
       <form id="contactForm" novalidate class="contact-form space-y-4">
-        @foreach ([['name', 'Nama Lengkap', 'text'], ['email', 'Alamat Email', 'email'], ['subject', 'Subjek', 'text'], ['message', 'Isi Pesan', 'textarea']] as [$id, $label, $type])
+        @foreach ([['name', 'Nama Lengkap', 'text', true], ['email', 'Alamat Email', 'email', true], ['subject', 'Subjek', 'text', false], ['message', 'Isi Pesan', 'textarea', true]] as [$id, $label, $type, $required])
           <div>
             <label for="{{ $id }}" class="block text-sm font-semibold mb-1">{{ $label }}</label>
             @if ($type === 'textarea')
-              <textarea id="{{ $id }}" rows="5" class="{{ $input }}"></textarea>
+              <textarea id="{{ $id }}" name="{{ $id }}" rows="5" class="{{ $input }}" @if ($required) required @endif></textarea>
             @else
-              <input id="{{ $id }}" type="{{ $type }}" class="{{ $input }}">
+              <input id="{{ $id }}" name="{{ $id }}" type="{{ $type }}" class="{{ $input }}" @if ($required) required @endif>
             @endif
             <p class="err text-sm text-red-500 mt-1"></p>
           </div>
@@ -168,6 +168,11 @@
       @foreach (['About' => '#about', 'Projects' => '#projects', 'Experience' => '#experience', 'Contact' => '#contact'] as $label => $href)
         <a href="{{ $href }}" class="{{ $link }}">{{ $label }}</a>
       @endforeach
+    </nav>
+    <nav aria-label="Media sosial" class="flex gap-4 text-lg">
+      <a data-social="github" href="#" aria-label="GitHub" class="{{ $link }}"><i class="fa-brands fa-github"></i></a>
+      <a data-social="linkedin" href="#" aria-label="LinkedIn" class="{{ $link }}"><i class="fa-brands fa-linkedin"></i></a>
+      <a data-social="email" href="#" aria-label="Email" class="{{ $link }}"><i class="fa-solid fa-envelope"></i></a>
     </nav>
   </div>
 </footer>
