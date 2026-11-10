@@ -1,50 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Latihan 3 dan 4a — Portofolio dan Setup Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Identitas Mahasiswa
 
-## Latihan 3 — Landing Page Portofolio
+| Keterangan | Data |
+|---|---|
+| Nama | Muhammad Tarikat |
+| NPM | 24312205 |
+| Kelas | IF 24 Cx |
+| Branch | `Lat-4a_SetupLaravel` |
 
-Portofolio ini memakai Tailwind CSS 4 melalui Vite. Halaman memuat navigasi
-responsif dengan menu hamburger, hero, skills, proyek, timeline pengalaman,
-sertifikat, formulir kontak, dan footer. Untuk menjalankan secara lokal:
+## Menjalankan Proyek
+
+Kebutuhan: PHP 8.3+, Composer, Node.js/npm, dan MySQL. Atur kredensial database
+lokal di `.env`, lalu jalankan:
 
 ```sh
+composer install
 npm install
+php artisan migrate
 npm run build
 php artisan serve
 ```
 
-### Bukti Tampilan
+Portofolio dapat dibuka di `http://127.0.0.1:8000`. Halaman bukti setup Latihan
+4a tersedia di `/welcome`. Untuk mengembangkan frontend, gunakan `npm run dev`
+di terminal terpisah.
 
-**Desktop (1280px)**
+> Gunakan `php artisan migrate` pada database yang sudah berisi data.
+> `php artisan migrate:fresh --seed` menghapus semua tabel dan hanya boleh
+> digunakan pada database latihan kosong.
+
+## Latihan 3 — Landing Page Portofolio
+
+Landing page responsif menggunakan Tailwind CSS 4 dan Vite, dengan navigasi
+desktop/mobile, profil, skills, proyek, pengalaman, sertifikat, dan kontak.
+
+**Desktop (1280px):**
 
 ![Tampilan portofolio desktop](./public/images/lat-3-desktop.jpg)
 
-**Mobile (375px)**
+**Mobile (375px):**
 
 ![Tampilan portofolio mobile](./public/images/lat-3-mobile.jpg)
 
 ## Latihan 4a — Setup Laravel
 
-Halaman bukti setup tersedia di `/welcome`; beranda portofolio tetap berada di `/`.
-Halaman menampilkan identitas mahasiswa, versi Laravel, nama database yang
-dikonfigurasi, dan status koneksinya. Lingkungan proyek saat ini memakai PHP
-8.3.33, Laravel 13.37.0, MySQL, dan database `portofolio` (dipertahankan dari
-konfigurasi yang sudah ada).
+Halaman `/welcome` menampilkan identitas mahasiswa, versi Laravel, nama
+database yang dikonfigurasi, dan status koneksi database aktual. Beranda
+portofolio tetap berada di `/`.
+
+Informasi lingkungan proyek: PHP 8.3.33, Laravel 13.37.0, MySQL, database
+`portofolio`. Database aktif dipertahankan dan tidak diganti ke
+`portofolio_web`.
+
+**Bukti halaman setup:**
+
+![Identitas dan status database pada halaman setup](./public/images/lat-4a-setup.jpg)
 
 ### Struktur Folder Utama
 
-- `app/` — model dan logika aplikasi.
-- `routes/` — definisi route web dan API.
-- `resources/views/` — tampilan Blade.
-- `resources/css/` dan `resources/js/` — aset frontend.
-- `database/migrations/` dan `database/seeders/` — skema dan data awal.
-- `public/` — aset yang dapat diakses browser.
+| Folder | Kegunaan |
+|---|---|
+| `app/Models` | Model Eloquent |
+| `app/Http/Controllers` | Controller aplikasi |
+| `routes` | Route web dan API |
+| `resources/views` | Tampilan Blade |
+| `resources/css`, `resources/js` | Aset frontend |
+| `database/migrations` | Skema database |
+| `database/seeders` | Data awal |
+| `public` | Aset publik |
 
 ### Perintah Artisan
 
@@ -55,56 +79,9 @@ php artisan migrate:status
 php artisan make:model NamaModel -m
 ```
 
-### Bukti Tampilan
+## Latihan Berikutnya
 
-![Halaman setup Laravel](./public/images/lat-4a-setup.jpg)
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Latihan 4b tersedia pada branch
+[Lat-4b_DatabaseModel](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4b_DatabaseModel).
+Latihan 5a tersedia pada branch
+[Lat-5a_RestAPI_GET](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-5a_RestAPI_GET).
