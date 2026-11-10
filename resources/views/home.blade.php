@@ -172,5 +172,20 @@
   </div>
 </footer>
 
+<aside aria-label="Status API Latihan 5a" class="fixed bottom-4 right-4 z-40 max-w-[calc(100vw-2rem)] rounded-xl bg-slate-900 p-4 text-xs leading-6 text-slate-100 shadow-xl sm:bottom-6 sm:right-6 sm:p-5 sm:text-sm">
+  <h2 class="mb-2 text-sm font-bold text-cyan-300">API Status — Latihan 5a</h2>
+  <p>Nama: <strong>Muhammad Tarikat</strong></p>
+  <p>NPM: <strong>24312205</strong></p>
+  <p>Laravel: <strong>{{ app()->version() }}</strong></p>
+  <hr class="my-2 border-slate-700">
+  <p class="mb-1 font-bold text-green-300">Endpoint aktif:</p>
+  @foreach (['profile', 'skills', 'projects', 'experiences', 'certificates'] as $endpoint)
+    <p>
+      <span class="text-amber-300">GET</span>
+      <a href="{{ url('/api/portfolio/'.$endpoint) }}" target="_blank" rel="noopener noreferrer" class="text-blue-300 underline underline-offset-2 hover:text-cyan-200">/api/portfolio/{{ $endpoint }}</a>
+    </p>
+  @endforeach
+</aside>
+
 </body>
 </html>

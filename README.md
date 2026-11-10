@@ -53,6 +53,36 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## Portfolio API — Latihan 5a
+
+The public portfolio API provides these read-only endpoints:
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | `/api/portfolio/profile` | Portfolio profile |
+| GET | `/api/portfolio/skills` | Skills, ordered by display position |
+| GET | `/api/portfolio/projects` | Projects, ordered by display position |
+| GET | `/api/portfolio/projects/{slug}` | Project details |
+| GET | `/api/portfolio/experiences` | Education and experience |
+| GET | `/api/portfolio/certificates` | Certificates |
+
+Successful responses use a consistent JSON envelope with `status`, `message`, and
+`data`. List responses also include `total`. Project slugs are added by the
+`add_slug_to_projects_table` migration and populated for existing projects.
+
+Run the API locally with `php artisan serve`, then open the endpoints above at
+`http://127.0.0.1:8000`. Run the endpoint tests with:
+
+```sh
+php artisan test --compact tests/Feature/PortfolioApiTest.php
+```
+
+Import [Lat-5a_Portfolio_API.postman_collection.json](./Lat-5a_Portfolio_API.postman_collection.json)
+into Postman to run the request checks. The proof panel on the portfolio page is
+captured below:
+
+![API Status — Latihan 5a](./public/images/lat-5a-api-status.jpg)
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,15 +17,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Profile::create([
-            'name'      => 'Muhammad Tarikat',
-            'headline'  => 'Informatics Student | Programmer, Mobile App Developer & UI/UX Designer',
-            'bio'       => 'Mahasiswa Teknik Informatika di Universitas Teknokrat Indonesia yang tertarik pada pemrograman, aplikasi mobile, UI/UX, dan desain grafis. Saya ingin menjadi full-stack developer yang membuat solusi digital kreatif dan bermanfaat.',
-            'photo'     => 'images/Foto_tarikat.jpg',
-            'email'     => 'muhammad.tarikat@gmail.com',
-            'github'    => 'https://github.com/usernameanda',
-            'linkedin'  => 'https://linkedin.com/in/usernameanda',
+            'name' => 'Muhammad Tarikat',
+            'headline' => 'Informatics Student | Programmer, Mobile App Developer & UI/UX Designer',
+            'bio' => 'Mahasiswa Teknik Informatika di Universitas Teknokrat Indonesia yang tertarik pada pemrograman, aplikasi mobile, UI/UX, dan desain grafis. Saya ingin menjadi full-stack developer yang membuat solusi digital kreatif dan bermanfaat.',
+            'photo' => 'images/Foto_tarikat.jpg',
+            'email' => 'muhammad.tarikat@gmail.com',
+            'github' => 'https://github.com/usernameanda',
+            'linkedin' => 'https://linkedin.com/in/usernameanda',
             'instagram' => 'https://www.instagram.com/tarikattt_/',
-            'cv_url'    => 'cv/CV-Muhammad-Tarikat.pdf',
+            'cv_url' => 'cv/CV-Muhammad-Tarikat.pdf',
         ]);
 
         $icon = fn (string $n) => "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/$n/$n-original.svg";
@@ -47,7 +48,7 @@ class DatabaseSeeder extends Seeder
             ['Website Portofolio', 'web', 'Website portofolio pribadi responsif dengan dark mode. Data dimuat dari REST API Laravel dan MySQL.', 'images/project-portfolio-web.svg', ['Laravel', 'Tailwind', 'MySQL']],
         ];
         foreach ($projects as $i => [$title, $cat, $desc, $img, $tags]) {
-            Project::create(['title' => $title, 'category' => $cat, 'description' => $desc, 'image' => $img, 'tags' => $tags, 'demo_url' => '#', 'repo_url' => '#', 'sort' => $i]);
+            Project::create(['title' => $title, 'slug' => Str::slug($title), 'category' => $cat, 'description' => $desc, 'image' => $img, 'tags' => $tags, 'demo_url' => '#', 'repo_url' => '#', 'sort' => $i]);
         }
 
         Experience::create(['type' => 'education', 'title' => 'Mahasiswa Teknik Informatika', 'institution' => 'Universitas Teknokrat Indonesia', 'period' => '2024 – Sekarang', 'details' => ['Mempelajari pemrograman web, mobile, dan basis data.', 'Mengerjakan proyek UI/UX dan pengembangan aplikasi.'], 'sort' => 0]);
