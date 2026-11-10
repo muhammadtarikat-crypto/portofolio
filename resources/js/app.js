@@ -116,7 +116,7 @@ function renderCertificates(list) {
 }
 
 /* ===== Muat semua data dari REST API ===== */
-Promise.all(['profile', 'skills', 'projects', 'experiences', 'certificates'].map((n) => getJson('/api/' + n)))
+Promise.all(['profile', 'skills', 'projects', 'experiences', 'certificates'].map((n) => getJson('/api/portfolio/' + n)))
     .then(([profile, skills, projects, experiences, certificates]) => {
         renderProfile(profile.data);
         renderSkills(skills.data);

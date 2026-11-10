@@ -1,4 +1,8 @@
-# Latihan 4b — Database dan Model
+# Portofolio — Latihan 3, 4a, 4b, dan 5a
+
+Portofolio responsif Muhammad Tarikat menggunakan Laravel, MySQL, dan REST API.
+Branch `main` menggabungkan hasil latihan; README tiap branch latihan tetap
+berisi dokumentasi khusus untuk latihan tersebut.
 
 ## Identitas Mahasiswa
 
@@ -7,77 +11,91 @@
 | Nama | Muhammad Tarikat |
 | NPM | 24312205 |
 | Kelas | IF 24 Cx |
-| Branch | `Lat-4b_DatabaseModel` |
 
-## Database
+## Hasil Latihan
 
-Database MySQL aktif bernama `portofolio`. Migrasi Latihan 4b menambahkan
-`project_skill` dan `messages` tanpa menghapus tabel atau data yang sudah ada.
-Tabel lama `contacts` tetap dipertahankan.
+### Latihan 3 — Landing Page
 
-## Tujuh Tabel Inti
+Landing page portofolio responsif dengan bagian profil, skills, proyek,
+pengalaman, sertifikat, kontak, dan pilihan tema.
 
-| Tabel | Kolom utama / relasi |
-|---|---|
-| `profiles` | `name`, `headline`, `bio`, `photo`, `email`, tautan sosial, `cv_url` |
-| `skills` | `name`, `category`, `icon`, `sort` |
-| `projects` | `title`, `category`, `description`, `image`, `tags`, tautan demo/repositori |
-| `project_skill` | `project_id` → `projects.id`, `skill_id` → `skills.id`; primary key gabungan |
-| `experiences` | `type`, `title`, `institution`, `period`, `details`, `sort` |
-| `certificates` | `name`, `issuer`, `year`, `sort` |
-| `messages` | `name`, `email`, `subject`, `message` |
+![Tampilan desktop Latihan 3](./public/images/lat-3-desktop.jpg)
 
-Model `Project` memiliki relasi `skills()` dan model `Skill` memiliki relasi
-`projects()`, keduanya many-to-many melalui tabel pivot `project_skill`.
-Foreign key pivot menghapus relasi terkait ketika project atau skill
-dihapus.
+![Tampilan mobile Latihan 3](./public/images/lat-3-mobile.jpg)
 
-## Seeder
+### Latihan 4a — Setup Laravel
 
-`ProjectSkillSeeder` menghubungkan proyek dengan skills tanpa menduplikasi
-profil atau proyek yang sudah ada. Jalankan migrasi terlebih dahulu, lalu
-seeder khusus ini:
+Halaman `/welcome` menampilkan identitas mahasiswa, versi Laravel, nama
+database, dan status koneksi. Bukti setup:
 
-```sh
-php artisan migrate
-php artisan db:seed --class=ProjectSkillSeeder
-```
+![Bukti setup Latihan 4a](./public/images/lat-4a-setup.jpg)
 
-Jangan jalankan `php artisan migrate:fresh --seed` pada database yang memiliki
-data penting karena perintah tersebut menghapus semua tabel.
+### Latihan 4b — Database dan Model
 
-Relasi yang sudah terpasang pada data proyek:
+Database menggunakan tabel profil, skills, projects, pengalaman, sertifikat,
+serta tabel pivot `project_skill` dan tabel `messages`. Relasi Project–Skill
+adalah many-to-many; `ProjectSkillSeeder` mengisi relasi tanpa membuat ulang
+data proyek.
 
-| Proyek | Skills |
-|---|---|
-| Nusantara Journey | Flutter, Figma |
-| EcoHero | Figma |
-| CleanCity | Figma |
-| Website Portofolio | Laravel, MySQL, Tailwind CSS |
+![Hasil query relasi project dan skills](./public/images/lat-4b-database-relations.png)
 
-## Bukti Database dan Relasi
+![Struktur tabel messages](./public/images/lat-4b-messages-table.png)
 
-Screenshot HeidiSQL berikut menunjukkan database, tabel `project_skill`,
-query, serta hasil relasi project dan skills:
-
-![Hasil query relasi project dan skills di HeidiSQL](./public/images/lat-4b-database-relations.png)
-
-Screenshot struktur tabel `messages`:
-
-![Struktur tabel messages di HeidiSQL](./public/images/lat-4b-messages-table.png)
-
-Screenshot `messages` yang tersedia hanya menampilkan bagian atas daftar
-kolom. Jika diperlukan, ambil screenshot tambahan yang memperlihatkan semua
-kolom tabel.
-
-## Verifikasi dengan Tinker
-
-Jalankan perintah berikut untuk melihat skill pertama milik project dengan
-ID 1:
+Screenshot `messages` yang tersedia hanya memperlihatkan sebagian kolom.
+Verifikasi Tinker dapat dijalankan dengan:
 
 ```sh
 php artisan tinker --execute 'dump(App\Models\Project::find(1)->skills->first()->name);'
 ```
 
-Hasil pada database aktif: `"Flutter"`. Screenshot terminal Tinker belum
-tersedia; tambahkan jika bukti screenshot Tinker diwajibkan.
+### Latihan 5a — REST API GET
+
+Endpoint GET tersedia untuk profil, skills, projects, detail project
+berdasarkan slug, experiences, dan certificates:
+
+| Endpoint | Kegunaan |
+|---|---|
+| `/api/portfolio/profile` | Profil |
+| `/api/portfolio/skills` | Daftar skills |
+| `/api/portfolio/projects` | Daftar projects |
+| `/api/portfolio/projects/{slug}` | Detail project |
+| `/api/portfolio/experiences` | Pengalaman dan pendidikan |
+| `/api/portfolio/certificates` | Sertifikat |
+
+Koleksi Postman tersedia di
+[Lat-5a_Portfolio_API.postman_collection.json](./Lat-5a_Portfolio_API.postman_collection.json).
+
+![Bukti status API Latihan 5a](./public/images/lat-5a-api-status.jpg)
+
+## Menjalankan Aplikasi
+
+Kebutuhan: PHP 8.3+, Composer, Node.js/npm, dan MySQL. Atur kredensial database
+lokal pada `.env`, lalu jalankan:
+
+```sh
+composer install
+npm install
+php artisan migrate
+php artisan db:seed
+npm run build
+php artisan serve
+```
+
+Seeder memasukkan data contoh portofolio. Jalankan pada database latihan yang
+sesuai; jangan jalankan `php artisan migrate:fresh --seed` pada database yang
+menyimpan data penting karena perintah itu menghapus seluruh tabel.
+
+## Pengujian
+
+Jalankan semua tes:
+
+```sh
+php artisan test --compact
+```
+
+Dokumentasi khusus tiap latihan:
+
+- [Latihan 3](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-3_LandingPage)
+- [Latihan 4a](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4a_SetupLaravel)
+- [Latihan 4b](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4b_DatabaseModel)
+- [Latihan 5a](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-5a_RestAPI_GET)

@@ -9,6 +9,7 @@ use App\Models\Profile;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,7 +49,7 @@ class DatabaseSeeder extends Seeder
             ['Website Portofolio', 'web', 'Website portofolio pribadi responsif dengan dark mode. Data dimuat dari REST API Laravel dan MySQL.', 'images/project-portfolio-web.svg', ['Laravel', 'Tailwind', 'MySQL']],
         ];
         foreach ($projects as $i => [$title, $cat, $desc, $img, $tags]) {
-            Project::create(['title' => $title, 'category' => $cat, 'description' => $desc, 'image' => $img, 'tags' => $tags, 'demo_url' => '#', 'repo_url' => '#', 'sort' => $i]);
+            Project::create(['title' => $title, 'slug' => Str::slug($title), 'category' => $cat, 'description' => $desc, 'image' => $img, 'tags' => $tags, 'demo_url' => '#', 'repo_url' => '#', 'sort' => $i]);
         }
 
         $this->call(ProjectSkillSeeder::class);

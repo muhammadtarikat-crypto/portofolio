@@ -1,0 +1,192 @@
+{
+  "info": {
+    "_postman_id": "dfe39b69-1da8-4a46-90f4-5b127a1b3c70",
+    "name": "Latihan 5a - Portfolio REST API",
+    "description": "Smoke tests untuk endpoint GET portfolio Latihan 5a.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Profile",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/profile"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns 200 with a profile envelope', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('success');",
+              "    pm.expect(body.data.name).to.be.a('string');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Skills",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/skills"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns 200 with a skills list', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('success');",
+              "    pm.expect(body.data).to.be.an('array');",
+              "    pm.expect(body.total).to.eql(body.data.length);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Projects",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/projects"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns 200 with a projects list', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('success');",
+              "    pm.expect(body.data).to.be.an('array');",
+              "    pm.expect(body.total).to.eql(body.data.length);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Project Detail",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/projects/{{slug}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns the project matching the slug', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('success');",
+              "    pm.expect(body.data.slug).to.eql(pm.collectionVariables.get('slug'));",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Project Detail - Unknown Slug",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/projects/project-that-does-not-exist"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns a consistent JSON 404 response', function () {",
+              "    pm.response.to.have.status(404);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('error');",
+              "    pm.expect(body.data).to.eql(null);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Experiences",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/experiences"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns 200 with an experiences list', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('success');",
+              "    pm.expect(body.data).to.be.an('array');",
+              "    pm.expect(body.total).to.eql(body.data.length);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Certificates",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{baseUrl}}/api/portfolio/certificates"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns 200 with a certificates list', function () {",
+              "    pm.response.to.have.status(200);",
+              "    const body = pm.response.json();",
+              "    pm.expect(body.status).to.eql('success');",
+              "    pm.expect(body.data).to.be.an('array');",
+              "    pm.expect(body.total).to.eql(body.data.length);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "slug",
+      "value": "nusantara-journey"
+    }
+  ]
+}
