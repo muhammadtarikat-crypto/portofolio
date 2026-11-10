@@ -74,11 +74,3 @@ Impor koleksi [Lat-5a_Portfolio_API.postman_collection.json](./Lat-5a_Portfolio_
 ke Postman untuk menjalankan permintaan API.
 
 ![Bukti status API Latihan 5a](./public/images/lat-5a-api-status.jpg)
-
-## Branch Latihan Lain
-
-| Latihan | Branch |
-|---|---|
-| 3 — Landing Page | [Lat-3_LandingPage](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-3_LandingPage) |
-| 4a — Setup Laravel | [Lat-4a_SetupLaravel](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4a_SetupLaravel) |
-| 4b — Database dan Model | [Lat-4b_DatabaseModel](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4b_DatabaseModel) |
