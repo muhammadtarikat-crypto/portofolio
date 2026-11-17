@@ -1,4 +1,4 @@
-# Latihan 3 — Landing Page Portofolio
+# Latihan 2 — Website Portfolio dengan FrontEnd Framework Tailwind
 
 ## Identitas Mahasiswa
 
@@ -7,36 +7,37 @@
 | Nama | Muhammad Tarikat |
 | NPM | 24312205 |
 | Kelas | IF 24 Cx |
-| Branch | `Lat-3_LandingPage` |
+| Branch | `Lat2_Tailwind` |
 
 ## Deskripsi
 
-Landing page portofolio dibuat dengan Laravel dan Tailwind CSS 4 melalui Vite.
-Halaman mencakup navigasi responsif desktop/mobile, hero, profil, skills,
-proyek, pengalaman, sertifikat, formulir kontak, dan footer.
+Tugas ini melanjutkan website portfolio dari Latihan 1 dengan menerapkan
+Tailwind CSS sebagai framework frontend. Project menggunakan Laravel Blade
+untuk struktur halaman dan Tailwind CSS v4 melalui Vite untuk styling.
+
+Styling Tailwind mencakup layout responsif, navigasi desktop/mobile, hero,
+profil, skills, proyek, pengalaman, sertifikat, formulir kontak, footer, dan
+tema gelap/terang.
 
 ## Menjalankan Proyek
 
-Pastikan PHP, Composer, Node.js/npm, dan MySQL tersedia. Sesuaikan koneksi
-database lokal di `.env`, lalu jalankan:
+Pastikan PHP, Composer, Node.js/npm, dan MySQL tersedia. Salin `.env.example`
+menjadi `.env`, siapkan database lokal, lalu atur koneksi `DB_*` di `.env`.
+Dari root project, jalankan:
 
 ```sh
 composer install
+php artisan key:generate
 npm install
 php artisan migrate
 npm run build
+php artisan db:seed
 php artisan serve
 ```
 
-Buka `http://127.0.0.1:8000`. Untuk pengembangan frontend gunakan `npm run dev`
-di terminal terpisah.
+Buka `http://127.0.0.1:8000`. Untuk pengembangan frontend dengan reload
+otomatis, jalankan `npm run dev` di terminal terpisah.
 
-## Bukti Tampilan
-
-**Desktop (1280px):**
-
-![Tampilan landing page desktop](./public/images/lat-3-desktop.jpg)
-
-**Mobile (375px):**
-
-![Tampilan landing page mobile](./public/images/lat-3-mobile.jpg)
+Data portfolio pada halaman dimuat melalui API dan database. Seeder mengisi
+data contoh. Jangan gunakan `php artisan migrate:fresh --seed` pada database
+yang berisi data penting karena perintah tersebut menghapus semua tabel.
