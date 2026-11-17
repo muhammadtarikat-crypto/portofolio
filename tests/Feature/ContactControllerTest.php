@@ -65,7 +65,7 @@ class ContactControllerTest extends TestCase
 
     public function test_missing_portfolio_message_fields_return_validation_errors_without_saving_a_message(): void
     {
-        $response = $this->postJson('/api/portfolio/messages', []);
+        $response = $this->post('/api/portfolio/messages', []);
 
         $response->assertUnprocessable()
             ->assertJsonValidationErrors(['sender_name', 'sender_email', 'subject', 'body'])
