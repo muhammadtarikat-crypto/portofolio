@@ -67,6 +67,40 @@ Koleksi Postman tersedia di
 
 ![Bukti status API Latihan 5a](./public/images/lat-5a-api-status.jpg)
 
+### Latihan 5b — REST API POST dan Validasi
+
+Endpoint kontak menerima JSON melalui `POST /api/portfolio/messages`. Form
+request memvalidasi nama (3–100 karakter), email, subjek (3–150 karakter), dan
+isi pesan (10–2000 karakter). Email diperiksa formatnya (`email:rfc`), tanpa
+permintaan DNS eksternal agar pengujian lokal tidak bergantung pada koneksi
+internet.
+
+```json
+{
+  "sender_name": "Budi Santoso",
+  "sender_email": "budi@example.com",
+  "subject": "Tawaran kerja",
+  "body": "Halo, saya ingin berdiskusi tentang portofolio Anda."
+}
+```
+
+Request valid disimpan dengan HTTP `201 Created`; input yang tidak valid
+menghasilkan JSON HTTP `422 Unprocessable Entity` dengan pesan validasi bahasa
+Indonesia. Endpoint dibatasi `5` request per menit per IP (`429` jika
+terlampaui), dan teks dibersihkan sebelum disimpan.
+
+Nama field API mengikuti panduan latihan. Agar kompatibel dengan skema
+Latihan 4b, `sender_name`, `sender_email`, dan `body` dipetakan ke kolom database
+`name`, `email`, dan `message`. Migration Latihan 5b menambahkan `is_read`
+dengan nilai awal `false`; atribut ini tidak dapat diisi dari request.
+
+Tes fitur untuk respons `201`, validasi `422`, sanitasi, proteksi `is_read`, dan
+rate limiting:
+
+```sh
+php artisan test --filter=ContactControllerTest --compact
+```
+
 ## Menjalankan Aplikasi
 
 Kebutuhan: PHP 8.3+, Composer, Node.js/npm, dan MySQL. Atur kredensial database
@@ -80,6 +114,11 @@ php artisan db:seed
 npm run build
 php artisan serve
 ```
+
+Untuk database yang sudah berisi data, jalankan `php artisan migrate` agar
+kolom `is_read` ditambahkan. Uji endpoint di
+`http://127.0.0.1:8000/api/portfolio/messages` dengan Postman menggunakan
+`Content-Type: application/json` dan `Accept: application/json`.
 
 Seeder memasukkan data contoh portofolio. Jalankan pada database latihan yang
 sesuai; jangan jalankan `php artisan migrate:fresh --seed` pada database yang
@@ -99,3 +138,4 @@ Dokumentasi khusus tiap latihan:
 - [Latihan 4a](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4a_SetupLaravel)
 - [Latihan 4b](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-4b_DatabaseModel)
 - [Latihan 5a](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-5a_RestAPI_GET)
+- [Latihan 5b](https://github.com/muhammadtarikat-crypto/portofolio/tree/Lat-5b_RestAPI_POST)

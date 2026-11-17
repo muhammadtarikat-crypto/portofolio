@@ -176,13 +176,19 @@ form.addEventListener('submit', async (e) => {
     });
     if (!ok) return;
 
+    const payload = {
+        sender_name: body.name,
+        sender_email: body.email,
+        subject: body.subject,
+        body: body.message,
+    };
     const btn = form.querySelector('button[type=submit]');
     btn.disabled = true;
     try {
-        const res = await fetch('/api/contacts', {
+        const res = await fetch('/api/portfolio/messages', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify(body),
+            body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (res.ok) {
@@ -190,7 +196,13 @@ form.addEventListener('submit', async (e) => {
             status.classList.add('text-green-600', 'dark:text-green-400');
             form.reset();
         } else if (res.status === 422) {
-            Object.entries(data.errors).forEach(([id, msgs]) => setErr(id, msgs[0]));
+            const fieldIds = {
+                sender_name: 'name',
+                sender_email: 'email',
+                subject: 'subject',
+                body: 'message',
+            };
+            Object.entries(data.errors).forEach(([field, msgs]) => setErr(fieldIds[field] || field, msgs[0]));
         } else {
             throw new Error(res.status);
         }

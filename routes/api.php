@@ -11,6 +11,7 @@ Route::prefix('portfolio')->name('portfolio.')->group(function () {
     Route::get('/projects/{slug}', [PortfolioController::class, 'projectDetail'])->name('projects.show');
     Route::get('/experiences', [PortfolioController::class, 'experiences'])->name('experiences');
     Route::get('/certificates', [PortfolioController::class, 'certificates'])->name('certificates');
+    Route::post('/messages', [PortfolioController::class, 'storeMessage'])->middleware('throttle:5,1');
 });
 
 Route::post('/contacts', [ContactController::class, 'store'])->middleware('throttle:5,1'); // maks 5 pesan/menit

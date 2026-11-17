@@ -12,4 +12,8 @@ class Message extends Model
         'subject',
         'message',
     ];
+
+    protected $casts = [
+        'is_read' => 'boolean',
+    ];
 }
