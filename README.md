@@ -15,10 +15,6 @@ Tugas ini melanjutkan website portfolio dari Latihan 1 dengan menerapkan
 Tailwind CSS sebagai framework frontend. Project menggunakan Laravel Blade
 untuk struktur halaman dan Tailwind CSS v4 melalui Vite untuk styling.
 
-Styling Tailwind mencakup layout responsif, navigasi desktop/mobile, hero,
-profil, skills, proyek, pengalaman, sertifikat, formulir kontak, footer, dan
-tema gelap/terang.
-
 ## Menjalankan Proyek
 
 Pastikan PHP, Composer, Node.js/npm, dan MySQL tersedia. Salin `.env.example`
